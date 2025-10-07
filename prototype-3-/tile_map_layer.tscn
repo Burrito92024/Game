@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://dixd1nge14326"]
+
+[ext_resource type="Texture2D" uid="uid://bmtonnm6iiplw" path="res://pixil-frame-0 (12).png" id="1_0ugm7"]
+[ext_resource type="Texture2D" uid="uid://bbhja078yv62a" path="res://pixil-frame-0 (13).png" id="1_vqaso"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uuaxm"]
+texture = ExtResource("1_vqaso")
+texture_region_size = Vector2i(15, 15)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vqaso"]
+texture = ExtResource("1_0ugm7")
+texture_region_size = Vector2i(15, 15)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_uuaxm"]
+tile_size = Vector2i(15, 15)
+sources/7 = SubResource("TileSetAtlasSource_vqaso")
+sources/0 = SubResource("TileSetAtlasSource_uuaxm")
+
+[node name="TileMapLayer" type="TileMapLayer"]
+scale = Vector2(1, 0.980892)
+tile_set = SubResource("TileSet_uuaxm")

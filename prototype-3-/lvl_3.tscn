@@ -1,0 +1,158 @@
+[gd_scene load_steps=14 format=4 uid="uid://dtc84bpdcdofh"]
+
+[ext_resource type="PackedScene" uid="uid://dixd1nge14326" path="res://tile_map_layer.tscn" id="1_dnxd7"]
+[ext_resource type="Script" uid="uid://dtolireluc88t" path="res://character_body_2d.gd" id="1_lyj2s"]
+[ext_resource type="Texture2D" uid="uid://ckmtihnpghw34" path="res://pixil-frame-0 (7).png" id="2_rlmum"]
+[ext_resource type="Script" uid="uid://dt32ejud34hy5" path="res://node_2d.gd" id="4_urlp7"]
+[ext_resource type="Texture2D" uid="uid://bd2odp4pgos6" path="res://icon.svg" id="5_rno80"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_31vo8"]
+radius = 14.0
+height = 28.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dc44f"]
+size = Vector2(52, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sbval"]
+size = Vector2(1146, 242)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_islhk"]
+size = Vector2(1146, 242)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ye7io"]
+size = Vector2(1146, 242)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n34eh"]
+size = Vector2(254, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chea5"]
+size = Vector2(129, 59)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_85jb8"]
+size = Vector2(63, 56)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMapLayer" parent="." instance=ExtResource("1_dnxd7")]
+position = Vector2(606, 173)
+scale = Vector2(8.86769, 7.61428)
+tile_map_data = PackedByteArray("AAD7//3/AAAAAAAAAAD8//3/AAAAAAAAAAD9//3/AAAAAAAAAAD+//3/AAAAAAAAAAD///3/AAAAAAAAAAAAAP3/AAAAAAAAAAABAP3/AAAAAAAAAAACAP3/AAAAAAAAAAACAP7/AAAAAAAAAAADAP7/AAAAAAAAAAADAP3/AAAAAAAAAAAEAP3/AAAAAAAAAAAEAP7/AAAAAAAAAAAEAP//AAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAADAAEAAAAAAAAAAAACAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAAAAAAAAAAAAAAADAP//AAAAAAAAAAACAP//AAAAAAAAAAABAP//AAAAAAAAAAABAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAD//wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD9/wEAAAAAAAAAAAD8/wEAAAAAAAAAAAD7/wEAAAAAAAAAAAD7/wAAAAAAAAAAAAD7////AAAAAAAAAAD7//7/AAAAAAAAAAD8//7/AAAAAAAAAAD9//7/AAAAAAAAAAD+//7/AAAAAAAAAAD///7/AAAAAAAAAAAAAP7/AAAAAAAAAAABAP7/AAAAAAAAAAAAAP//AAAAAAAAAAAAAAAAAAAAAAAAAAD//wAAAAAAAAAAAAD/////AAAAAAAAAAD+////AAAAAAAAAAD+/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAD9////AAAAAAAAAAD8////AAAAAAAAAAD8/wAAAAAAAAAAAAA=")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
+script = ExtResource("1_lyj2s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(194, 209)
+shape = SubResource("CapsuleShape2D_31vo8")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/CollisionShape2D"]
+position = Vector2(0.124998, -2.5)
+scale = Vector2(0.289557, 0.289062)
+texture = ExtResource("2_rlmum")
+
+[node name="Node2D2" type="Area2D" parent="."]
+position = Vector2(-181, -192)
+script = ExtResource("4_urlp7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D2"]
+position = Vector2(1172, 272)
+shape = SubResource("RectangleShape2D_dc44f")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D2/CollisionShape2D"]
+position = Vector2(-1.52588e-05, 1.00001)
+scale = Vector2(0.421875, 0.335937)
+texture = ExtResource("5_rno80")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(576, 525)
+shape = SubResource("RectangleShape2D_sbval")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-122, 178)
+rotation = 1.57083
+shape = SubResource("RectangleShape2D_islhk")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(1406, -22)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(-122, 178)
+rotation = 1.57083
+shape = SubResource("RectangleShape2D_ye7io")
+
+[node name="TileMapLayer" parent="StaticBody2D3" instance=ExtResource("1_dnxd7")]
+position = Vector2(-799.42, 161.798)
+scale = Vector2(-9.33332, 8.79127)
+tile_map_data = PackedByteArray("AAD//wIABwAAAAAAAAAAAAIABwAAAAAAAAABAAIABwAAAAAAAAACAAIABwAAAAAAAAADAAIABwAAAAAAAAAEAAIABwAAAAAAAAD+/wIABwAAAAAAAAD9/wIABwAAAAAAAAD8/wIABwAAAAAAAAD7/wIABwAAAAAAAAD6/wIABwAAAAAAAAAFAAIABwAAAAAAAAD6/wMABwAAAAAAAAD7/wMABwAAAAAAAAD8/wMABwAAAAAAAAD9/wMABwAAAAAAAAD+/wMABwAAAAAAAAD//wMABwAAAAAAAAAAAAMABwAAAAAAAAABAAMABwAAAAAAAAACAAMABwAAAAAAAAADAAMABwAAAAAAAAAEAAMABwAAAAAAAAAFAAMABwAAAAAAAAA=")
+
+[node name="TileMapLayer2" parent="StaticBody2D3" instance=ExtResource("1_dnxd7")]
+position = Vector2(-698, 246)
+scale = Vector2(4.22515, 3.87904)
+tile_map_data = PackedByteArray("AAD7/wIABwAAAAAAAAD8/wEABwAAAAAAAAD9/wAABwAAAAAAAAD+////BwAAAAAAAAD///7/BwAAAAAAAAAAAP3/BwAAAAAAAAABAP3/BwAAAAAAAAADAP3/BwAAAAAAAAAEAP3/BwAAAAAAAAAFAP3/BwAAAAAAAAAGAP3/BwAAAAAAAAACAP3/BwAAAAAAAAA=")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(977, 89)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(-142, -11)
+shape = SubResource("RectangleShape2D_n34eh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D4/CollisionShape2D"]
+position = Vector2(241, 4.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4/CollisionShape2D/StaticBody2D"]
+position = Vector2(14.5, -3.5)
+shape = SubResource("RectangleShape2D_chea5")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+position = Vector2(607, 193)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
+position = Vector2(4.83264, 1.43939)
+shape = SubResource("RectangleShape2D_85jb8")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2(673, 133)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2(4.83264, 1.43939)
+shape = SubResource("RectangleShape2D_85jb8")
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="."]
+position = Vector2(546, 251)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7"]
+position = Vector2(4.83264, 1.43939)
+shape = SubResource("RectangleShape2D_85jb8")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D7"]
+position = Vector2(-66, 57)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7/StaticBody2D"]
+position = Vector2(4.83264, 1.43939)
+shape = SubResource("RectangleShape2D_85jb8")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D7/StaticBody2D"]
+position = Vector2(-61, 60)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7/StaticBody2D/StaticBody2D"]
+position = Vector2(4.83264, 1.43939)
+shape = SubResource("RectangleShape2D_85jb8")
+
+[node name="StaticBody2D8" type="StaticBody2D" parent="."]
+position = Vector2(1180, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D8"]
+position = Vector2(4, 0)
+shape = SubResource("RectangleShape2D_dc44f")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D8/CollisionShape2D"]
+position = Vector2(-23, 2)
+scale = Vector2(0.421875, 0.335937)
+texture = ExtResource("5_rno80")
+
+[connection signal="body_entered" from="Node2D2" to="Node2D2" method="_on_body_entered"]
