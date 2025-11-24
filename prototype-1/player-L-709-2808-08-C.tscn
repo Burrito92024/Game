@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=3 uid="uid://coxbwlgt4mcoi"]
+
+[ext_resource type="Texture2D" uid="uid://c1de6v8d8msmt" path="res://icon.svg" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://x5bidptrx0hl" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Script" uid="uid://duq02icfsid2x" path="res://area_2d.gd" id="3_i3pqv"]
+[ext_resource type="Script" uid="uid://wffy7oejngs8" path="res://area_2d_2.gd" id="4_hqtel"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_onrkg"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"swing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4flbx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_4flbx")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4flbx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_4flbx")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4flbx"]
+radius = 17.0
+height = 34.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sweqy"]
+size = Vector2(51, 46)
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 4
+script = ExtResource("1_onrkg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(0.288889, 0.275556)
+sprite_frames = SubResource("SpriteFrames_onrkg")
+animation = &"walk"
+autoplay = "walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_4flbx")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("3_i3pqv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_4flbx")
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_mask = 2
+script = ExtResource("4_hqtel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(44.5, -7)
+shape = SubResource("RectangleShape2D_sweqy")
+
+[node name="SwingTimer" type="Timer" parent="Area2D2"]
+
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]
+[connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_2_area_entered"]

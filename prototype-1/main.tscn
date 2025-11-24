@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7x1xx7kq8byw"]
+
+[ext_resource type="Script" uid="uid://c0kt2fvxosbju" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://dk07txvx8ghp2" path="res://rigid_body_2d.tscn" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://coxbwlgt4mcoi" path="res://player.tscn" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://c1de6v8d8msmt" path="res://icon.svg" id="3_1bvp3"]
+
+[sub_resource type="Curve2D" id="Curve2D_1bvp3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -8, 0, 0, 0, 0, 0, 1152, 0, 0, 0, 0, 0, 1152, 496)
+}
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(1153, 149)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_0xm2m")
+mob_scene = ExtResource("2_1bvp3")
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(240, 450)
+
+[node name="Mob_timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Score_timer" type="Timer" parent="."]
+
+[node name="Start_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(7.94483, 0)
+scale = Vector2(0.993103, 1)
+curve = SubResource("Curve2D_1bvp3")
+
+[node name="Mob_spawn_location" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-8, 0)
+
+[node name="Icon" type="Sprite2D" parent="Path2D"]
+position = Vector2(572.222, 576)
+scale = Vector2(9.05903, 1.125)
+texture = ExtResource("3_1bvp3")
+
+[node name="Player" parent="." instance=ExtResource("2_h2yge")]
+position = Vector2(240, 450)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(576, 576)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_h2yge")
+
+[connection signal="timeout" from="Mob_timer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="Score_timer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="Start_timer" to="." method="_on_start_timer_timeout"]

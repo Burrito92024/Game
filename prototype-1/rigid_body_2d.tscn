@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://dk07txvx8ghp2"]
+
+[ext_resource type="Script" uid="uid://mmupkeomg8mf" path="res://rigid_body_2d.gd" id="1_jiowd"]
+[ext_resource type="Texture2D" uid="uid://c1de6v8d8msmt" path="res://icon.svg" id="1_wltir"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jiowd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wltir")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_wltir")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wltir")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_wltir")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wltir")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_wltir")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jiowd"]
+radius = 48.0104
+
+[node name="mob" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_jiowd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_jiowd")
+animation = &"attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jiowd")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(1, 0.9)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+texture_filter = 1
+shape = SubResource("CircleShape2D_jiowd")
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
